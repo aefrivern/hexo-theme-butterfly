@@ -2,7 +2,9 @@ if theme.aside.card_post_series.enable
   - const array = fragment_cache('seriesArr', groupPosts)
   .card-widget.card-post-series
     .item-headline
-      i.fa-solid.fa-layer-group
+      //- i.fa-solid.fa-layer-group
+      svg.meta_icon(style="width:25px;height:25px;position:relative;top:5px").post-ui-icon
+        use(xlink:href='#icon-a-layergroup')
       span= theme.aside.card_post_series.series_title ? page.series : _p('aside.card_post_series')
     .aside-list
       each item in array[page.series]

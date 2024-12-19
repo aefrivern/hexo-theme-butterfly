@@ -10,11 +10,15 @@
       if theme.post_meta.post.date_type
         span.post-meta-date
           if theme.post_meta.post.date_type === 'both'
-            i.far.fa-calendar-alt.fa-fw.post-meta-icon
+            //- i.far.fa-calendar-alt.fa-fw.post-meta-icon
+            svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
+              use(xlink:href='#icon-rili')
             span.post-meta-label= _p('post.created')
             time.post-meta-date-created(datetime=date_xml(page.date) title=_p('post.created') + ' ' + full_date(page.date))= date(page.date, config.date_format)
             span.post-meta-separator |
-            i.fas.fa-history.fa-fw.post-meta-icon
+            //- i.fas.fa-history.fa-fw.post-meta-icon
+            svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+              use(xlink:href='#icon-gengxin')
             span.post-meta-label= _p('post.updated')
             time.post-meta-date-updated(datetime=date_xml(page.updated) title=_p('post.updated') + ' ' + full_date(page.updated))= date(page.updated, config.date_format)
           else
@@ -30,7 +34,10 @@
           if theme.post_meta.post.date_type
             span.post-meta-separator |
           each item, index in page.categories.data
-            i.fas.fa-inbox.fa-fw.post-meta-icon
+            //- i.fas.fa-inbox.fa-fw.post-meta-icon
+            a.faa-parent.animated-hover
+            svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+              use(xlink:href='#icon-fenlei')
             a(href=url_for(item.path)).post-meta-categories #[=item.name]
             if index < page.categories.data.length - 1
               i.fas.fa-angle-right.post-meta-separator
@@ -41,13 +48,17 @@
         span.post-meta-separator |
         span.post-meta-wordcount
           if theme.wordcount.post_wordcount
-            i.far.fa-file-word.fa-fw.post-meta-icon
+            //- i.far.fa-file-word.fa-fw.post-meta-icon
+            svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
+              use(xlink:href='#icon-word')
             span.post-meta-label= _p('post.wordcount') + ':'
             span.word-count= wordcount(page.content)
             if theme.wordcount.min2read
               span.post-meta-separator |
           if theme.wordcount.min2read
-            i.far.fa-clock.fa-fw.post-meta-icon
+            //- i.far.fa-clock.fa-fw.post-meta-icon
+            svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
+              use(xlink:href='#icon-shizhong')
             span.post-meta-label= _p('post.min2read') + ':'
             span= min2read(page.content, {cn: 350, en: 160}) + _p('post.min2read_unit')
 

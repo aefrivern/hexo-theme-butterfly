@@ -27,11 +27,13 @@ mixin indexPostUI()
               if theme.post_meta.page.date_type
                 span.post-meta-date
                   if theme.post_meta.page.date_type === 'both'
-                    i.far.fa-calendar-alt
+                    svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
+                      use(xlink:href='#icon-rili')
                     span.article-meta-label=_p('post.created')
                     time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
                     span.article-meta-separator |
-                    i.fas.fa-history
+                    svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+                      use(xlink:href='#icon-gengxin')
                     span.article-meta-label=_p('post.updated')
                     time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))= date(article.updated, config.date_format)
                   else
@@ -46,7 +48,8 @@ mixin indexPostUI()
                 span.article-meta
                   span.article-meta-separator |
                   each item, index in article.categories.data
-                    i.fas.fa-inbox
+                    svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+                      use(xlink:href='#icon-fenlei')
                     a(href=url_for(item.path)).article-meta__categories #[=item.name]
                     if index < article.categories.data.length - 1
                       i.fas.fa-angle-right.article-meta-link
@@ -54,7 +57,8 @@ mixin indexPostUI()
                 span.article-meta.tags
                   span.article-meta-separator |
                   each item, index in article.tags.data
-                    i.fas.fa-tag
+                    svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+                      use(xlink:href='#icon-biaoqian1')
                     a(href=url_for(item.path)).article-meta__tags #[=item.name]
                     if index < article.tags.data.length - 1
                       span.article-meta-link #[='•']

@@ -12,7 +12,9 @@ nav#nav
     if theme.search.use
       #search-button
         span.site-page.social-icon.search
-          i.fas.fa-search.fa-fw
+          //- i.fas.fa-search.fa-fw
+          svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
+            use(xlink:href='#icon-sousuo1')
           span= ' ' + _p('search.title')
     if theme.menu
       != partial('includes/header/menu_item', {}, {cache: true})

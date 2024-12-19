@@ -1,4 +1,27 @@
 #footer-wrap
+  #ft
+    .ft-item-1
+      .t-top
+        .t-t-l
+          p.ft-t.t-l-t 格言🧬
+          .bg-ad
+            div
+              | 安得广厦千万间，大庇天下寒士俱欢颜，风雨不动安如山。
+        .t-t-r
+          p.ft-t.t-l-t 猜你想看💡
+          ul.ft-links
+            li
+              a(href='/comments/') 留点什么
+              a(href='/random/') 随便逛逛
+            li
+              a(href='/about/') 关于
+              a(href='/archives/') 文章归档
+            li
+              a(href='/categories/') 文章分类
+              a(href='/tags/') 文章标签
+            li
+              a(href='/gallery/') 我的画廊
+              a(href='/charts/') 网站统计
   if theme.footer.owner.enable
     - const currentYear = new Date().getFullYear()
     - const sinceYear = theme.footer.owner.since

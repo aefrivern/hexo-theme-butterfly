@@ -1,7 +1,9 @@
 if theme.aside.card_recent_post.enable
   .card-widget.card-recent-post
     .item-headline
-      i.fas.fa-history
+      //- i.fas.fa-history
+      svg.meta_icon(style="width:13px;height:13px;position:relative;top:2px").post-ui-icon
+        use(xlink:href='#icon-gengxin')
       span= _p('aside.card_recent_post')
     .aside-list
       - let postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5

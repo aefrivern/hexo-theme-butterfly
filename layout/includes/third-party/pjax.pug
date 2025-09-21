@@ -3,7 +3,7 @@ if theme.pjax.exclude
   each val in theme.pjax.exclude
     - pjaxExclude += `:not([href="${val}"])`
 
-- let pjaxSelectors = ['head > title', '#config-diff', '#body-wrap', '#rightside-config-hide', '#rightside-config-show', '#web_bg', '.js-pjax']
+- let pjaxSelectors = ['head > title', '#config-diff', '#body-wrap', '#rightside-config-hide', '#rightside-config-show', '.js-pjax', '#web_bg']
 
 - let choose = theme.comments.use
 if choose
@@ -29,7 +29,13 @@ script.
 
     const triggerPjaxFn = (val) => {
       if (!val) return
-      Object.values(val).forEach(fn => fn())
+      Object.values(val).forEach(fn => {
+        try {
+          fn()
+        } catch (err) {
+          console.debug('Pjax callback failed:', err)
+        }
+      })
     }
 
     document.addEventListener('pjax:send', () => {
@@ -59,7 +65,10 @@ script.
 
     document.addEventListener('pjax:error', e => {
       if (e.request.status === 404) {
-        window.location.href = e.request.responseURL
+        const usePjax = !{theme.pjax && theme.pjax.enable}
+        !{theme.error_404 && theme.error_404.enable}
+          ? (usePjax ? pjax.loadUrl('!{url_for("/404.html")}') : window.location.href = '!{url_for("/404.html")}')
+          : window.location.href = e.request.responseURL
       }
     })
   })()

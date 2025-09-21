@@ -5,9 +5,13 @@ nav#nav
         img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
       if theme.nav.display_title
         span.site-name=config.title
-    if globalPageType === 'post'
+    if globalPageType === 'post' && theme.nav.display_post_title
       a.nav-page-title(href=url_for('/'))
         span.site-name=(page.title || config.title)
+        span.site-name
+          i.fa-solid.fa-circle-arrow-left
+          span= '  ' + _p('post.back_to_home')
+
   #menus
     if theme.search.use
       #search-button
@@ -15,6 +19,7 @@ nav#nav
           //- i.fas.fa-search.fa-fw
           svg.meta_icon(style="width:16px;height:16px;position:relative;top:3px").post-ui-icon
             use(xlink:href='#icon-sousuo1')
+
           span= ' ' + _p('search.title')
     if theme.menu
       != partial('includes/header/menu_item', {}, {cache: true})

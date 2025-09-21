@@ -38,18 +38,34 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
 
     // Find or create archive entry
     const lastEntry = acc[acc.length - 1];
-    if (
-      !lastEntry ||
-      !compareFunc(lastEntry.year, lastEntry.month, year, month)
-    ) {
-      acc.push({
-        name: date.format(format),
-        year,
-        month,
-        count: 1,
-      });
+
+    if (type === 'yearly') {
+      const existingYearIndex = acc.findIndex((entry) => entry.year === year);
+      if (existingYearIndex !== -1) {
+        acc[existingYearIndex].count++;
+      } else {
+        // 否則創建新條目
+        acc.push({
+          name: date.format(format),
+          year,
+          month,
+          count: 1,
+        });
+      }
     } else {
-      lastEntry.count++;
+      if (
+        !lastEntry ||
+        !compareFunc(lastEntry.year, lastEntry.month, year, month)
+      ) {
+        acc.push({
+          name: date.format(format),
+          year,
+          month,
+          count: 1,
+        });
+      } else {
+        lastEntry.count++;
+      }
     }
 
     return acc;
@@ -71,7 +87,7 @@ hexo.extend.helper.register('aside_archives', function (options = {}) {
   // Use template literal for better readability
   const archiveHeader = `
     <div class="item-headline">
-      <i class="iconfont icon-archives"></i>
+      <i class="fas fa-archive"></i>
       <span>${_p('aside.card_archives')}</span>
       ${
         data.length > limitedData.length

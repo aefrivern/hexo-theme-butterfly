@@ -473,7 +473,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use: algolia_search
+  use: docsearch
   placeholder:
 
   # Algolia Search
@@ -494,9 +494,9 @@ search:
   # Docsearch
   # https://docsearch.algolia.com/
   docsearch:
-    appId:
-    apiKey:
-    indexName:
+    appId: OLLWH31WRO
+    apiKey: 89b831f3448364b5c4b47f41cf43496d
+    indexName: My Blog
     option:
 
 # --------------------------------------
@@ -735,6 +735,8 @@ site_verification:
   #   content: xxxxxx
   # - name: baidu-site-verification
   #   content: xxxxxxx
+  - name: algolia-site-verification
+    content: 51B14871E27CAEE7
 
 # --------------------------------------
 # Beautify / Effect
